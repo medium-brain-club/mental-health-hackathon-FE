@@ -7,6 +7,7 @@ export function Layout({ children }) {
 
   return (
     <LayoutContainer>
+      {isMobile ? null : <div />}
       <PageContainer>{children}</PageContainer>
       {isMobile ? <MobileNav /> : null}
     </LayoutContainer>
@@ -14,12 +15,19 @@ export function Layout({ children }) {
 }
 
 const LayoutContainer = styled.main`
-  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
   display: grid;
-  grid-template-rows: 1fr 68px;
+  grid-template-rows: minmax(0, 1fr) 68px;
+  overflow: hidden;
 
   @media (min-width: 768px) {
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 100px minmax(0, 1fr);
   }
 `
-const PageContainer = styled.div``
+const PageContainer = styled.div`
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  height: 100%;
+`

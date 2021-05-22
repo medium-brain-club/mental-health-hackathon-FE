@@ -24,6 +24,8 @@ export function MobileNav() {
 const IconWrapper = styled.div`
   padding: 12px;
   border-radius: 8px;
+  display: grid;
+  place-content: center;
 
   ${({ isActive }) =>
     isActive &&
@@ -37,7 +39,7 @@ const MobileNavContainer = styled.nav`
   grid-template-columns: min-content 1fr min-content;
   padding: 0 20px;
   place-items: center;
-  grid-gap: 16px;
+  grid-gap: 20px;
   border-top: 2px solid ${({ theme }) => theme.colors.main.border};
 `
 
@@ -55,6 +57,6 @@ const Button = styled.button`
   span {
     margin-left: 12px;
     color: ${({ theme }) => theme.colors.text.white};
-    font-weight: bolder;
+    font-weight: 500;
   }
 `

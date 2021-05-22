@@ -9,6 +9,10 @@ export default {
     },
     text: {
       white: "#FFFFFF",
+      light: "#8C8C8C",
+    },
+    border: {
+      primary: "#E6E6E6",
     },
   },
   media_queries: {
