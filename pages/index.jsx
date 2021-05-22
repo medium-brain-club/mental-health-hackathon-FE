@@ -1,7 +1,9 @@
+import { Layout } from "../components/common/Layout"
+
 export default function Home() {
   return (
-    <div>
-      <h1>Mental Health Hackathon App</h1>
-    </div>
+    <Layout>
+      <h1>Ventia</h1>
+    </Layout>
   )
 }
