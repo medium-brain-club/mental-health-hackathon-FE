@@ -3,6 +3,7 @@ export default {
     main: {
       primary: "#5855F0",
       border: "#ACAAF8",
+      disabled: "#ACAAF8",
     },
     secondary: {
       primary: "#CAFBE6",

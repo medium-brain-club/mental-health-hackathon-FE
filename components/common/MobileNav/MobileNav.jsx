@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components"
 import { useRouter } from "next/router"
 import { AddIcon, FeedIcon, HomeIcon } from "../../icons"
+import { Button } from "../../../styles/styled-components"
 
 export function MobileNav() {
   const router = useRouter()
@@ -10,7 +11,7 @@ export function MobileNav() {
       <IconWrapper isActive={router.pathname === "/feed"} onClick={() => router.push("/feed")}>
         <FeedIcon />
       </IconWrapper>
-      <Button onClick={() => router.push("/add-post")}>
+      <Button onClick={() => router.push("/add-post")} isPrimary>
         <AddIcon />
         <span>Create Post</span>
       </Button>
@@ -41,22 +42,4 @@ const MobileNavContainer = styled.nav`
   place-items: center;
   grid-gap: 20px;
   border-top: 2px solid ${({ theme }) => theme.colors.main.border};
-`
-
-const Button = styled.button`
-  border: none;
-  background: ${({ theme }) => theme.colors.main.primary};
-  border-radius: 8px;
-  padding: 12px;
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  span {
-    margin-left: 12px;
-    color: ${({ theme }) => theme.colors.text.white};
-    font-weight: 500;
-  }
 `

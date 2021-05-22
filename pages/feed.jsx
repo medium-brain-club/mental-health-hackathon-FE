@@ -1,5 +1,6 @@
 import styled from "styled-components"
-import { Layout } from "../components/common/Layout/Layout"
+import { Layout } from "../components/common/Layout"
+import { Filters } from "../components/feed/Filters"
 import { PostCard } from "../components/posts/PostCard"
 import { Tags } from "../components/tags/Tags"
 
@@ -64,6 +65,10 @@ const tags = [
     id: "3a54d8h75h4k3d54d8g9q7r43g5s4f3",
     name: "eatingdisorder",
   },
+  {
+    id: "8sdf4g657t6h857a3s5432s4",
+    name: "depression",
+  },
 ]
 
 export default function FeedPage() {
@@ -71,6 +76,7 @@ export default function FeedPage() {
     <Layout>
       <Logo>VENTAI</Logo>
       <Tags tags={tags} />
+      <Filters />
       <PostsContainer>
         {posts.map(post => {
           return <PostCard post={post} key={post.id} />
@@ -88,12 +94,16 @@ const Logo = styled.h1`
 `
 
 const PostsContainer = styled.div`
-  padding: 20px;
+  padding: 0 16px;
   display: grid;
   grid-template-rows: repeat(auto-fill, 138px);
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   justify-content: center;
   grid-gap: 16px;
   margin-bottom: 16px;
-  overflow: scroll;
+  overflow-y: scroll;
+
+  @media (min-width: 1080px) {
+    padding: 0;
+  }
 `

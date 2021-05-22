@@ -25,9 +25,13 @@ const LayoutContainer = styled.main`
     grid-template-rows: 100px minmax(0, 1fr);
   }
 `
+
 const PageContainer = styled.div`
   height: 100%;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto auto 1fr;
   height: 100%;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
 `

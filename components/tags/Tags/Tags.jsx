@@ -14,4 +14,6 @@ export function Tags({ tags }) {
 const TagsContainer = styled.div`
   padding: 20px;
   background-color: ${({ theme }) => theme.colors.secondary.primary};
+  overflow-x: auto;
+  margin-bottom: 16px;
 `

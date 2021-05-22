@@ -10,4 +10,8 @@ const StyledTag = styled.span`
   &:first-child {
     margin-left: 0;
   }
+
+  &:last-child {
+    margin-right: 28px;
+  }
 `
