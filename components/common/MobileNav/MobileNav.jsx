@@ -3,17 +3,28 @@ import { useRouter } from "next/router"
 import { AddIcon, FeedIcon, HomeIcon } from "../../icons"
 import { Button } from "../../../styles/styled-components"
 
-export function MobileNav() {
+export function MobileNav({ buttonAction }) {
   const router = useRouter()
+  function handleOnClick() {
+    const atAddPost = router.pathname === "/add-post"
+    if (atAddPost) {
+      buttonAction()
+    } else {
+      router.push("/add-post")
+    }
+  }
 
   return (
     <MobileNavContainer>
-      <IconWrapper isActive={router.pathname === "/feed"} onClick={() => router.push("/feed")}>
+      <IconWrapper
+        isActive={router.pathname === "/feed"}
+        onClick={() => router.push("/feed?sort-by=interactions")}
+      >
         <FeedIcon />
       </IconWrapper>
-      <Button onClick={() => router.push("/add-post")} isPrimary>
+      <Button onClick={handleOnClick} isPrimary>
         <AddIcon />
-        <span>Create Post</span>
+        <span>{router.pathname === "/add-post" ? "Submit Post" : "Create Post"}</span>
       </Button>
       <IconWrapper isActive={router.pathname === "/"} onClick={() => router.push("/")}>
         <HomeIcon />
