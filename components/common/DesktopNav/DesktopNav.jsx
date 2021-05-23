@@ -11,12 +11,16 @@ export function DesktopNav() {
       <h1>Ventia</h1>
 
       <ElementWrapper>
-        <SearchIcon />
+        <SearchIcon fill="#00000" />
         <SearchBar type="text" placeholder="Search..."></SearchBar>
       </ElementWrapper>
 
-      <BorderlessButton onClick={() => router.push("/feed")}>
+      <BorderlessButton onClick={() => router.push("/")}>
         <span>Home</span>
+      </BorderlessButton>
+
+      <BorderlessButton onClick={() => router.push("/feed")}>
+        <span>Feed</span>
       </BorderlessButton>
 
       <Button isPrimary onClick={() => router.push("/add-post")}>
@@ -29,13 +33,12 @@ export function DesktopNav() {
 
 const DesktopNavContainer = styled.nav`
   display: grid;
-  grid-template-columns: max-content 1fr min-content auto;
+  grid-template-columns: max-content 1fr min-content min-content auto;
   align-items: center;
   max-width: 1080px;
   width: 100%;
   margin: 0 auto;
   grid-gap: 20px;
-  border-top: 2px solid ${({ theme }) => theme.colors.main.border};
 `
 
 const ElementWrapper = styled.div`

@@ -3,6 +3,7 @@ import styled, { css } from "styled-components"
 export const BorderlessButton = styled.a`
   font-size: 14px;
   border: none;
+  cursor: pointer;
   background-color: ${({ theme }) => theme.colors.main.white};
 
   span {
