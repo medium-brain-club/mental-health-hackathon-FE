@@ -1,13 +1,14 @@
 import styled from "styled-components"
 import { MobileNav } from "../MobileNav"
 import { useWindowSize } from "../../../hooks/useWindowSize"
+import { DesktopNav } from "../DesktopNav"
 
 export function Layout({ children }) {
   const { isMobile } = useWindowSize()
 
   return (
     <LayoutContainer>
-      {isMobile ? null : <div />}
+      {isMobile ? null : <DesktopNav />}
       <PageContainer>{children}</PageContainer>
       {isMobile ? <MobileNav /> : null}
     </LayoutContainer>
