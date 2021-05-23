@@ -4,11 +4,13 @@ export default {
       primary: "#5855F0",
       border: "#ACAAF8",
       disabled: "#ACAAF8",
+      white: "#FFFFFF",
     },
     secondary: {
       primary: "#CAFBE6",
     },
     text: {
+      purple: "#5855F0",
       white: "#FFFFFF",
       light: "#8C8C8C",
     },

@@ -1,10 +1,11 @@
 import styled, { css } from "styled-components"
 
 export const Button = styled.button`
-  border: none;
+  border: 2px solid ${({ theme }) => theme.colors.main.disabled};
   background: ${({ theme }) => theme.colors.main.disabled};
   border-radius: 8px;
   padding: 12px 16px;
+  min-width: fit-content;
   width: 100%;
   height: fit-content;
   cursor: pointer;
@@ -28,6 +29,7 @@ export const Button = styled.button`
   ${({ isActive, isPrimary }) =>
     (isActive || isPrimary) &&
     css`
+      border: 2px solid ${({ theme }) => theme.colors.main.primary};
       background: ${({ theme }) => theme.colors.main.primary};
     `};
 `
