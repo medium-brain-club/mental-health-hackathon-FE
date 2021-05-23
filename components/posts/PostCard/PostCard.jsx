@@ -15,7 +15,7 @@ export function PostCard({ post }) {
     <PostCardContainer
       onClick={e => {
         e.stopPropagation()
-        router.push(`/post/${post.id}`)
+        router.push(`/post/${post.UUID}`)
       }}
     >
       <OptionsWrapper>
@@ -38,12 +38,14 @@ export function PostCard({ post }) {
         ) : null}
       </OptionsWrapper>
       <TagsContainer>
-        {post.tags.map(tag => (
-          <Tag key={tag}>#{tag}</Tag>
+        {post.Tags.map(tag => (
+          <Tag key={tag}>
+            #{tag.split(" ").join("").toLowerCase().replace("+", "").replace("-", "")}
+          </Tag>
         ))}
       </TagsContainer>
-      <Title>{post.title}</Title>
-      <Body>{post.body.slice(0, 80)}...</Body>
+      <Title>{post.Title}</Title>
+      <Body>{post.Body.slice(0, 80)}...</Body>
     </PostCardContainer>
   )
 }

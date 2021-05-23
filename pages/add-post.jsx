@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useController, useForm, useFormState } from "react-hook-form"
+import { useForm } from "react-hook-form"
 import styled, { css } from "styled-components"
 import { Layout } from "../components/common/Layout/Layout"
 import { AddIcon } from "../components/icons"
@@ -15,7 +15,7 @@ export default function AddPostPage() {
     console.log({ ...data, tags: typedTags })
   }
 
-  function handleSpaceOnTags(e) {
+  function handleEnterOnTags(e) {
     if (typedTags.length === 2) {
       return
     }
@@ -24,13 +24,15 @@ export default function AddPostPage() {
     if (e.keyCode === enter) {
       const value = e.target.value
       const tags = value.split(" ")
-      const newTag = tags[tags.length - 1]
+      const newTag = { Name: tags[tags.length - 1] }
       setTypedTags([...typedTags, newTag])
     }
   }
 
+  console.log({ typedTags })
+
   function handleOnTagDelete(tagName) {
-    setTypedTags(prevState => prevState.filter(tag => tag !== tagName))
+    setTypedTags(prevState => prevState.filter(tag => tag.Name !== tagName))
   }
 
   useEffect(() => {
@@ -44,25 +46,28 @@ export default function AddPostPage() {
         <Form>
           <FieldSet>
             <Label>Title</Label>
-            <Input {...register("title", { required: true })} placeholder="title..."/>
+            <Input {...register("title", { required: true })} placeholder="title..." />
           </FieldSet>
           <FieldSet>
             <Label>Body</Label>
-            <Textarea {...register("body", { required: true })} placeholder="go ahead, vent away..."/>
+            <Textarea
+              {...register("body", { required: true })}
+              placeholder="go ahead, vent away..."
+            />
           </FieldSet>
           <FieldSet>
             <Label>
               Tags{" "}
               <TagLimit limitReached={typedTags.length === 2}>{`${typedTags.length} / 2`}</TagLimit>
             </Label>
-            <Input {...register("tags")} onKeyDown={handleSpaceOnTags} placeholder="tags..."/>
+            <Input {...register("tags")} onKeyDown={handleEnterOnTags} placeholder="tags..." />
           </FieldSet>
           {typedTags.length > 0 ? (
             <TagsContainer>
               {typedTags.map(tag => (
-                <TagWrapper>
-                  <Tag>{tag}</Tag>
-                  <TagDelete onClick={() => handleOnTagDelete(tag)}>X</TagDelete>
+                <TagWrapper key={tag.Name}>
+                  <Tag>{tag.Name}</Tag>
+                  <TagDelete onClick={() => handleOnTagDelete(tag.Name)}>X</TagDelete>
                 </TagWrapper>
               ))}
             </TagsContainer>
@@ -71,7 +76,7 @@ export default function AddPostPage() {
             <Label>
               Email <span>(optional)</span>
             </Label>
-            <Input {...register("email")} placeholder="email..."/>
+            <Input {...register("email")} placeholder="email..." />
           </FieldSet>
           <FieldSet isCheckbox>
             <Input {...register("send-email")} type="checkbox" />

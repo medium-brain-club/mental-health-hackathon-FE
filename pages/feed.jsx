@@ -7,6 +7,7 @@ import { PostCard } from "../components/posts/PostCard"
 import { useWindowSize } from "../hooks/useWindowSize"
 import { Tags } from "../components/tags/Tags"
 import TagsAPI from "../api/TagsAPI"
+import PostAPI from "../api/PostAPI"
 
 const posts = [
   {
@@ -69,6 +70,9 @@ const posts = [
 export default function FeedPage() {
   const { isMobile } = useWindowSize()
   const { data: tags } = useQuery("tags", TagsAPI.getTags)
+  const { data: posts } = useQuery("posts", PostAPI.getPosts)
+
+  console.log({ posts, tags })
 
   return (
     <Layout>
@@ -77,19 +81,36 @@ export default function FeedPage() {
         <Tags tags={tags} />
         <Filters />
         <PostsContainer>
-          {posts.map(post => {
-            return <PostCard post={post} key={post.id} />
+          {posts?.map(post => {
+            return <PostCard post={post} key={post.UUID} />
           })}
         </PostsContainer>
       </PageContainer>
     </Layout>
   )
 }
+
+// export async function getServerSideProps(context) {
+//   const tags = await TagsAPI.getTags()
+//   const posts = await PostAPI.getPosts()
+
+//   return {
+//     props: {
+//       tags,
+//       posts,
+//     },
+//   }
+// }
+
 const PageContainer = styled.div`
   height: 100%;
   display: grid;
   grid-template-rows: auto auto auto 1fr;
   width: 100%;
+
+  @media (min-width: 1080px) {
+    grid-template-rows: auto auto 1fr;
+  }
 `
 
 const Logo = styled.h1`
