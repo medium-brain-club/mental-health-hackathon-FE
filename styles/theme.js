@@ -11,9 +11,11 @@ export default {
       primary: "#CAFBE6",
     },
     text: {
+      dark: "#2D2D2D",
       purple: "#5855F0",
       white: "#FFFFFF",
       light: "#8C8C8C",
+      gray: "#3F3F3F",
     },
     border: {
       primary: "#E6E6E6",

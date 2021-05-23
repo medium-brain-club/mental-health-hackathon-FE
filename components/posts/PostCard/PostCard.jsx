@@ -1,7 +1,7 @@
 import { useRouter } from "next/router"
 import { useState } from "react"
 import styled, { css } from "styled-components"
-import { HeartIcon, LikeIcon, OptionsIcon, SupportIcon } from "../../icons"
+import { LovesIcon, LikesIcon, OptionsIcon, SupportsIcon } from "../../icons"
 
 export function PostCard({ post }) {
   const [isOptionsOpen, setIsOptionsOpen] = useState(false)
@@ -23,15 +23,15 @@ export function PostCard({ post }) {
         {isOptionsOpen ? (
           <Options>
             <Option>
-              <LikeIcon />
+              <LikesIcon />
               <span>Like</span>
             </Option>
             <Option>
-              <SupportIcon />
+              <SupportsIcon />
               <span>Support</span>
             </Option>
             <Option>
-              <HeartIcon />
+              <LovesIcon />
               <span>Love</span>
             </Option>
           </Options>
