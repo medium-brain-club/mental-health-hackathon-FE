@@ -1,8 +1,12 @@
+import { useEffect, useState } from "react"
+import { useQuery, useQueryClient } from "react-query"
 import styled from "styled-components"
 import { Layout } from "../components/common/Layout"
 import { Filters } from "../components/feed/Filters"
 import { PostCard } from "../components/posts/PostCard"
+import { useWindowSize } from "../hooks/useWindowSize"
 import { Tags } from "../components/tags/Tags"
+import TagsAPI from "../api/TagsAPI"
 
 const posts = [
   {
@@ -62,39 +66,31 @@ const posts = [
   },
 ]
 
-const tags = [
-  {
-    id: "s541df35a7df335a4sd68f4a35s1dfg13dfgh",
-    name: "adhd",
-  },
-  {
-    id: "786as5d4g354543a5sd7ga35d42a1df",
-    name: "lifeishard",
-  },
-  {
-    id: "3a54d8h75h4k3d54d8g9q7r43g5s4f3",
-    name: "eatingdisorder",
-  },
-  {
-    id: "8sdf4g657t6h857a3s5432s4",
-    name: "depression",
-  },
-]
-
 export default function FeedPage() {
+  const { isMobile } = useWindowSize()
+  const { data: tags } = useQuery("tags", TagsAPI.getTags)
+
   return (
     <Layout>
-      <Logo>VENTAI</Logo>
-      <Tags tags={tags} />
-      <Filters />
-      <PostsContainer>
-        {posts.map(post => {
-          return <PostCard post={post} key={post.id} />
-        })}
-      </PostsContainer>
+      <PageContainer>
+        {isMobile ? <Logo>VENTAI</Logo> : null}
+        <Tags tags={tags} />
+        <Filters />
+        <PostsContainer>
+          {posts.map(post => {
+            return <PostCard post={post} key={post.id} />
+          })}
+        </PostsContainer>
+      </PageContainer>
     </Layout>
   )
 }
+const PageContainer = styled.div`
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  width: 100%;
+`
 
 const Logo = styled.h1`
   text-align: center;
@@ -111,7 +107,7 @@ const PostsContainer = styled.div`
   justify-content: center;
   grid-gap: 16px;
   margin-bottom: 16px;
-  overflow-y: scroll;
+  overflow-y: auto;
 
   @media (min-width: 1080px) {
     padding: 0;

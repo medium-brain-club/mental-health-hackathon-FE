@@ -5,6 +5,7 @@ export default {
       border: "#ACAAF8",
       disabled: "#ACAAF8",
       white: "#FFFFFF",
+      light: "#E8E8FD",
     },
     secondary: {
       primary: "#CAFBE6",

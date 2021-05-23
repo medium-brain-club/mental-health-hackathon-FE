@@ -7,11 +7,11 @@ export const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body, button, input {
+  body, button, input, textarea {
     font-family: 'Roboto';
   }
 
-  button, input {
-    font-size: 14px;
+  button, input, textarea {
+    font-size: 16px;
   }
 `
